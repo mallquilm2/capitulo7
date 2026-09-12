@@ -11,7 +11,7 @@ public class SqlConecta {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             cn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/escuela?serverTimezone=UTC","root","root");
+                    "jdbc:mysql://localhost:3306/venta?serverTimezone=UTC","root","root");
         }catch (Exception e){
             e.printStackTrace();
         }

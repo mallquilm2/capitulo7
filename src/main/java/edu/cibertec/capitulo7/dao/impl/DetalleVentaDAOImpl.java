@@ -12,6 +12,10 @@ public class DetalleVentaDAOImpl implements DetalleVentaDAO {
 
     private final SqlConecta conecta;
 
+    public DetalleVentaDAOImpl() {
+        conecta = new SqlConecta();
+    }
+
     public DetalleVentaDAOImpl(SqlConecta conecta) {
         this.conecta = new SqlConecta();
     }
@@ -20,14 +24,16 @@ public class DetalleVentaDAOImpl implements DetalleVentaDAO {
 
         List<Object[]> list = null;
         String sql = "SELECT detalleventa.codigoventa,"
-                     +"detalleventa.codigoprodcuto,"
+                     +"detalleventa.codigoproducto,"
                      +"venta.cliente,"
                      +"producto.nombre,"
                       +"producto.precio,"
                      +"detalleventa.cantidad,"
-                     +"detalleventa.descuento"
+                     +"detalleventa.descuento "
                      +"FROM detalleventa "
                      +"INNER JOIN venta "
+                     +"ON detalleventa.codigoventa = venta.codigoventa "
+                     +"INNER JOIN producto "
                      +"ON detalleventa.codigoproducto=producto.codigoproducto "
                      +"ORDER BY detalleventa.codigoventa, detalleventa.codigoproducto";
 

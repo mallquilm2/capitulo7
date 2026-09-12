@@ -1,8 +1,10 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@taglib
+prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
    <head>
-      <meta charset="UTF-8" />
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <title>DAT</title>
       <link href="../../css/main.css" rel="stylesheet" type="text/css" />
       <link href="../../tema10/table.css" type="text/css" rel="stylesheet" />
@@ -10,30 +12,30 @@
          src="../../jq/jquery-2.1.3.min.js"
          type="text/javascript"
       ></script>
-      <script src="../../js/productos.js" type="text/javascript"></script>
+      <script src="../../js/ventas.js" type="text/javascript"></script>
    </head>
    <body>
       <div id="caja" style="margin: auto; width: 400px">
          <table class="navy">
             <caption>
-               Lista de Productos
+               Lista de Ventas
             </caption>
             <thead>
                <tr>
-                  <td>Producto</td>
-                  <td>Precio</td>
+                  <td>Cliente</td>
+                  <td>Fecha</td>
                   <th style="width: 26px">
-                     <a href="#" onclick="productosIns()">
+                     <a href="#" onclick="ventasIns()">
                         <img src="../../tema10/images/ins.png" alt="Nuevo" />
                      </a>
                   </th>
                   <th style="width: 26px">
-                     <a href="#" onclick="productosDel()">
+                     <a href="#" onclick="ventasDel()">
                         <img src="../../tema10/images/del.png" alt="Retirar" />
                      </a>
                   </th>
                   <th style="width: 26px">
-                     <a href="#" onclick="productosUpd()">
+                     <a href="#" onclick="ventasUpd()">
                         <img
                            src="../../tema10/images/upd.png"
                            alt="Actualizar"
@@ -48,22 +50,27 @@
                </tr>
             </tfoot>
             <tbody>
-               <c:forEach var="p" items="${list}">
+               <c:forEach var="v" items="${list}">
                   <tr>
-                     <td>${p.nombre}</td>
-                     <td colspan="2">${p.precio}</td>
+                     <td>${v.cliente}</td>
+                     <td colspan="2">
+                        <fmt:formatDate
+                           value="${v.fecha}"
+                           pattern="dd/MM/yyyy hh:mm:ss a"
+                        />
+                     </td>
                      <th>
                         <input
                            type="checkbox"
-                           value="${p.codigoproducto}"
-                           name="codigoproductoDel"
+                           value="${v.codigoventa}"
+                           name="codigoventaDel"
                         />
                      </th>
                      <th>
                         <input
                            type="radio"
-                           value="${p.codigoproducto}"
-                           name="codigoproductoUpd"
+                           value="${v.codigoventa}"
+                           name="codigoventaUpd"
                         />
                      </th>
                   </tr>

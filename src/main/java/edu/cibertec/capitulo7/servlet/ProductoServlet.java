@@ -28,6 +28,7 @@ public class ProductoServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String accion = request.getParameter("accion");
         String result = null;
         String target = null;
@@ -41,8 +42,10 @@ public class ProductoServlet extends HttpServlet {
             if(list!=null){
                 request.getSession().setAttribute("list",list);
                 target = "index.jsp";
-            }else
+            }else {
+                target = "index.jsp";
                 result = "Problemas en consulta";
+            }
         }else if(accion.equals("INS")){
             Producto p = new Producto();
             result = valida(request,p);
@@ -56,7 +59,7 @@ public class ProductoServlet extends HttpServlet {
                 request.setAttribute("productos",p);
                 target = "productosIns.jsp";
             }
-        }if(accion.equals("DEL")){
+        }else if(accion.equals("DEL")){
             String _ids = request.getParameter("ids");
             List<Integer>  Idel = ids(_ids);
             if(Idel==null){

@@ -58,6 +58,11 @@ public class VentaDAOImpl implements VentaDAO {
                 ps.setInt(1, venta.getCodigoventa());
                 ps.setString(2,venta.getCliente());
                 ps.setTimestamp(3, venta.getFecha());
+
+                int ctos = ps.executeUpdate();
+                if(ctos==0){
+                    throw new SQLException("0 filas afectadas");
+                }
             }catch (SQLException e){
                 e.printStackTrace();
             }finally {
